@@ -2,8 +2,8 @@
   "name": "@dhis2/d2-ui-expression-manager",
   "version": "5.0.0",
   "description": "Expression manager component for DHIS2 apps",
-  "main": "./build/cjs/index.js",
-  "module": "./build/es/index.js",
+  "main": "./cjs/index.js",
+  "module": "./es/index.js",
   "license": "BSD-3-Clause",
   "author": "",
   "scripts": {
