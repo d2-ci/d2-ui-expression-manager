@@ -1,6 +1,5 @@
 {
   "name": "@dhis2/d2-ui-expression-manager",
-  "version": "5.0.1",
   "description": "Expression manager component for DHIS2 apps",
   "main": "./index.js",
   "module": "./index.js",
@@ -35,5 +34,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "version": "5.0.1"
 }
