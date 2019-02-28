@@ -1,11 +1,18 @@
-import { Observable } from 'rxjs';
-import { isFunction } from 'lodash';
+'use strict';
 
-import { ListSelectWithLocalSearch } from '@dhis2/d2-ui-core';
-import { withPropsFromObservable } from '@dhis2/d2-ui-core';
-import { getAllObjectsWithFields } from './data-helpers';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-var constantSelectorProps$ = Observable.fromPromise(getAllObjectsWithFields('constant')).map(function (constants) {
+var _rxjs = require('rxjs');
+
+var _lodash = require('lodash');
+
+var _d2UiCore = require('@dhis2/d2-ui-core');
+
+var _dataHelpers = require('./data-helpers');
+
+var constantSelectorProps$ = _rxjs.Observable.fromPromise((0, _dataHelpers.getAllObjectsWithFields)('constant')).map(function (constants) {
     return {
         source: constants.map(function (model) {
             return { value: model.id, label: model.displayName };
@@ -14,11 +21,11 @@ var constantSelectorProps$ = Observable.fromPromise(getAllObjectsWithFields('con
             var constFormula = ['C{', value, '}'].join('');
 
             // `this` is the react component props object
-            if (isFunction(this.onSelect)) {
+            if ((0, _lodash.isFunction)(this.onSelect)) {
                 this.onSelect(constFormula);
             }
         }
     };
 });
 
-export default withPropsFromObservable(constantSelectorProps$, ListSelectWithLocalSearch);
+exports.default = (0, _d2UiCore.withPropsFromObservable)(constantSelectorProps$, _d2UiCore.ListSelectWithLocalSearch);

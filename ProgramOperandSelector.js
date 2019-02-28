@@ -1,19 +1,64 @@
-import _Array$from from 'babel-runtime/core-js/array/from';
-import _Map from 'babel-runtime/core-js/map';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import log from 'loglevel';
+'use strict';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-import { ListSelect } from '@dhis2/d2-ui-core';
-import DropDownForSchemaReference from './DropDownForSchemaReference';
+var _from = require('babel-runtime/core-js/array/from');
+
+var _from2 = _interopRequireDefault(_from);
+
+var _map = require('babel-runtime/core-js/map');
+
+var _map2 = _interopRequireDefault(_map);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _loglevel = require('loglevel');
+
+var _loglevel2 = _interopRequireDefault(_loglevel);
+
+var _Tabs = require('material-ui/Tabs/Tabs');
+
+var _Tabs2 = _interopRequireDefault(_Tabs);
+
+var _Tab = require('material-ui/Tabs/Tab');
+
+var _Tab2 = _interopRequireDefault(_Tab);
+
+var _d2UiCore = require('@dhis2/d2-ui-core');
+
+var _DropDownForSchemaReference = require('./DropDownForSchemaReference');
+
+var _DropDownForSchemaReference2 = _interopRequireDefault(_DropDownForSchemaReference);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
     listStyle: {
@@ -37,12 +82,12 @@ var styles = {
 };
 
 var ProgramOperandSelector = function (_Component) {
-    _inherits(ProgramOperandSelector, _Component);
+    (0, _inherits3.default)(ProgramOperandSelector, _Component);
 
     function ProgramOperandSelector(props, context) {
-        _classCallCheck(this, ProgramOperandSelector);
+        (0, _classCallCheck3.default)(this, ProgramOperandSelector);
 
-        var _this = _possibleConstructorReturn(this, (ProgramOperandSelector.__proto__ || _Object$getPrototypeOf(ProgramOperandSelector)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (ProgramOperandSelector.__proto__ || (0, _getPrototypeOf2.default)(ProgramOperandSelector)).call(this, props, context));
 
         _this.state = {
             programTrackedEntityAttributeOptions: [],
@@ -73,7 +118,7 @@ var ProgramOperandSelector = function (_Component) {
                     programTrackedEntityAttributeOptions: _this.state.programAttributes.get(programId) || []
                 });
             }).catch(function (error) {
-                return log.error(error);
+                return _loglevel2.default.error(error);
             });
         };
 
@@ -101,7 +146,7 @@ var ProgramOperandSelector = function (_Component) {
         return _this;
     }
 
-    _createClass(ProgramOperandSelector, [{
+    (0, _createClass3.default)(ProgramOperandSelector, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -123,7 +168,7 @@ var ProgramOperandSelector = function (_Component) {
 
                 _this2.setState({
                     programMenuItems: programMenuItems,
-                    programAttributes: new _Map(programs.map(function (program) {
+                    programAttributes: new _map2.default(programs.map(function (program) {
                         return [program.id, program.programTrackedEntityAttributes.map(function (ptea) {
                             return {
                                 value: ptea.trackedEntityAttribute.id,
@@ -133,8 +178,8 @@ var ProgramOperandSelector = function (_Component) {
                             return left.label.toLowerCase().localeCompare(right.label.toLowerCase());
                         })];
                     })),
-                    programIndicators: new _Map(programs.map(function (program) {
-                        return [program.id, _Array$from(program.programIndicators.values ? program.programIndicators.values() : []).map(function (pi) {
+                    programIndicators: new _map2.default(programs.map(function (program) {
+                        return [program.id, (0, _from2.default)(program.programIndicators.values ? program.programIndicators.values() : []).map(function (pi) {
                             return {
                                 value: pi.dimensionItem,
                                 label: pi.displayName
@@ -145,20 +190,20 @@ var ProgramOperandSelector = function (_Component) {
                     }))
                 });
             }).catch(function (e) {
-                return log.error(e);
+                return _loglevel2.default.error(e);
             });
         }
     }, {
         key: 'renderTab',
         value: function renderTab(tabName, source, onItemDoubleClick, noValueMessage, listLength) {
-            return React.createElement(
-                Tab,
+            return _react2.default.createElement(
+                _Tab2.default,
                 { label: this.getTranslation(tabName), style: styles.tabLabel },
-                !listLength ? React.createElement(
+                !listLength ? _react2.default.createElement(
                     'div',
                     { style: styles.noValueMessageStyle },
                     this.getTranslation(noValueMessage)
-                ) : React.createElement(ListSelect, {
+                ) : _react2.default.createElement(_d2UiCore.ListSelect, {
                     onItemDoubleClick: onItemDoubleClick,
                     source: source,
                     listStyle: styles.listStyle,
@@ -169,8 +214,8 @@ var ProgramOperandSelector = function (_Component) {
     }, {
         key: 'renderTabs',
         value: function renderTabs() {
-            return React.createElement(
-                Tabs,
+            return _react2.default.createElement(
+                _Tabs2.default,
                 { tabItemContainerStyle: styles.tabItemContainerStyle },
                 this.renderTab('program_data_elements', this.state.programDataElementOptions, this.onProgramDataElementSelected, 'no_program_data_elements', this.state.programDataElementOptions.length),
                 this.renderTab('program_tracked_entity_attributes', this.state.programTrackedEntityAttributeOptions, this.onProgramTrackedEntityAttributeSelected, 'no_tracked_entity_attributes', this.state.programTrackedEntityAttributeOptions.length),
@@ -180,13 +225,13 @@ var ProgramOperandSelector = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 null,
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { style: styles.dropDownStyle },
-                    React.createElement(DropDownForSchemaReference, {
+                    _react2.default.createElement(_DropDownForSchemaReference2.default, {
                         schema: 'program',
                         value: this.state.selectedProgramID,
                         fullWidth: true,
@@ -198,16 +243,15 @@ var ProgramOperandSelector = function (_Component) {
             );
         }
     }]);
-
     return ProgramOperandSelector;
-}(Component);
+}(_react.Component);
 
 ProgramOperandSelector.propTypes = {
-    onSelect: PropTypes.func.isRequired
+    onSelect: _propTypes2.default.func.isRequired
 };
 
 ProgramOperandSelector.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
-export default ProgramOperandSelector;
+exports.default = ProgramOperandSelector;
