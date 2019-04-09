@@ -1,13 +1,40 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+'use strict';
 
-import { ListSelect } from '@dhis2/d2-ui-core';
-import { DropDown } from '@dhis2/d2-ui-core';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _d2UiCore = require('@dhis2/d2-ui-core');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
     list: {
@@ -25,12 +52,12 @@ var styles = {
 var reportingRates = [{ id: 'REPORTING_RATE', displayName: 'Reporting rate' }, { id: 'REPORTING_RATE_ON_TIME', displayName: 'Reporting rate on time' }, { id: 'ACTUAL_REPORTS', displayName: 'Actual reports' }, { id: 'ACTUAL_REPORTS_ON_TIME', displayName: 'Actual reports on time' }, { id: 'EXPECTED_REPORTS', displayName: 'Expected reports' }];
 
 var ReportingRatesSelector = function (_Component) {
-    _inherits(ReportingRatesSelector, _Component);
+    (0, _inherits3.default)(ReportingRatesSelector, _Component);
 
     function ReportingRatesSelector(props, context) {
-        _classCallCheck(this, ReportingRatesSelector);
+        (0, _classCallCheck3.default)(this, ReportingRatesSelector);
 
-        var _this = _possibleConstructorReturn(this, (ReportingRatesSelector.__proto__ || _Object$getPrototypeOf(ReportingRatesSelector)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (ReportingRatesSelector.__proto__ || (0, _getPrototypeOf2.default)(ReportingRatesSelector)).call(this, props, context));
 
         _this.state = {
             selectedReportingRate: 'REPORTING_RATE',
@@ -60,7 +87,7 @@ var ReportingRatesSelector = function (_Component) {
         return _this;
     }
 
-    _createClass(ReportingRatesSelector, [{
+    (0, _createClass3.default)(ReportingRatesSelector, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -83,19 +110,19 @@ var ReportingRatesSelector = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 null,
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { style: styles.dropDownStyle },
-                    React.createElement(DropDown, {
+                    _react2.default.createElement(_d2UiCore.DropDown, {
                         menuItems: reportingRates,
                         value: this.state.selectedReportingRate,
                         onChange: this.onSelectReportingRate
                     })
                 ),
-                this.state.isLoaded && React.createElement(ListSelect, {
+                this.state.isLoaded && _react2.default.createElement(_d2UiCore.ListSelect, {
                     onItemDoubleClick: this.onDoubleClickDataSet,
                     source: this.state.dataSets,
                     listStyle: this.props.listStyle,
@@ -104,13 +131,12 @@ var ReportingRatesSelector = function (_Component) {
             );
         }
     }]);
-
     return ReportingRatesSelector;
-}(Component);
+}(_react.Component);
 
 ReportingRatesSelector.propTypes = {
-    onSelect: PropTypes.func.isRequired,
-    listStyle: PropTypes.object
+    onSelect: _propTypes2.default.func.isRequired,
+    listStyle: _propTypes2.default.object
 };
 
 ReportingRatesSelector.defaultProps = {
@@ -118,7 +144,7 @@ ReportingRatesSelector.defaultProps = {
 };
 
 ReportingRatesSelector.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
-export default ReportingRatesSelector;
+exports.default = ReportingRatesSelector;

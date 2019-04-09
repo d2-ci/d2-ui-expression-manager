@@ -1,34 +1,96 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import log from 'loglevel';
-import { Observable } from 'rxjs';
+'use strict';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
-import Paper from 'material-ui/Paper/Paper';
-import Divider from 'material-ui/Divider';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-import ExpressionDescription from './ExpressionDescription';
-import ExpressionOperators from './ExpressionOperators';
-import ExpressionFormula from './ExpressionFormula';
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
-import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
-import DataElementOperandSelector from './DataElementOperandSelector';
-import ReportingRatesSelector from './ReportingRatesSelector';
-import ProgramOperandSelector from './ProgramOperandSelector';
-import ConstantSelector from './ConstantSelector';
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-import { Heading } from '@dhis2/d2-ui-core';
-import { Action } from '@dhis2/d2-ui-core';
-import { Row } from '@dhis2/d2-ui-core';
-import { Column } from '@dhis2/d2-ui-core';
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-import { setInstance } from 'd2';
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _loglevel = require('loglevel');
+
+var _loglevel2 = _interopRequireDefault(_loglevel);
+
+var _rxjs = require('rxjs');
+
+var _Tabs = require('material-ui/Tabs/Tabs');
+
+var _Tabs2 = _interopRequireDefault(_Tabs);
+
+var _Tab = require('material-ui/Tabs/Tab');
+
+var _Tab2 = _interopRequireDefault(_Tab);
+
+var _Paper = require('material-ui/Paper/Paper');
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _Divider = require('material-ui/Divider');
+
+var _Divider2 = _interopRequireDefault(_Divider);
+
+var _ExpressionDescription = require('./ExpressionDescription');
+
+var _ExpressionDescription2 = _interopRequireDefault(_ExpressionDescription);
+
+var _ExpressionOperators = require('./ExpressionOperators');
+
+var _ExpressionOperators2 = _interopRequireDefault(_ExpressionOperators);
+
+var _ExpressionFormula = require('./ExpressionFormula');
+
+var _ExpressionFormula2 = _interopRequireDefault(_ExpressionFormula);
+
+var _OrganisationUnitGroupSelector = require('./OrganisationUnitGroupSelector');
+
+var _OrganisationUnitGroupSelector2 = _interopRequireDefault(_OrganisationUnitGroupSelector);
+
+var _DataElementOperandSelector = require('./DataElementOperandSelector');
+
+var _DataElementOperandSelector2 = _interopRequireDefault(_DataElementOperandSelector);
+
+var _ReportingRatesSelector = require('./ReportingRatesSelector');
+
+var _ReportingRatesSelector2 = _interopRequireDefault(_ReportingRatesSelector);
+
+var _ProgramOperandSelector = require('./ProgramOperandSelector');
+
+var _ProgramOperandSelector2 = _interopRequireDefault(_ProgramOperandSelector);
+
+var _ConstantSelector = require('./ConstantSelector');
+
+var _ConstantSelector2 = _interopRequireDefault(_ConstantSelector);
+
+var _d2UiCore = require('@dhis2/d2-ui-core');
+
+var _d = require('d2');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
     expressionDescription: {
@@ -75,12 +137,12 @@ var styles = {
 };
 
 var ExpressionManager = function (_Component) {
-    _inherits(ExpressionManager, _Component);
+    (0, _inherits3.default)(ExpressionManager, _Component);
 
     function ExpressionManager(props) {
-        _classCallCheck(this, ExpressionManager);
+        (0, _classCallCheck3.default)(this, ExpressionManager);
 
-        var _this = _possibleConstructorReturn(this, (ExpressionManager.__proto__ || _Object$getPrototypeOf(ExpressionManager)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (ExpressionManager.__proto__ || (0, _getPrototypeOf2.default)(ExpressionManager)).call(this, props));
 
         _this.descriptionChange = function (newDescription) {
             _this.setState({
@@ -138,7 +200,7 @@ var ExpressionManager = function (_Component) {
         };
 
         // override the d2 instance
-        setInstance(_this.props.d2);
+        (0, _d.setInstance)(_this.props.d2);
 
         _this.i18n = _this.props.d2.i18n;
 
@@ -153,11 +215,11 @@ var ExpressionManager = function (_Component) {
         _this.i18n.strings.add('constants');
         _this.i18n.strings.add('programs');
 
-        _this.requestExpressionStatusAction = Action.create('requestExpressionStatus');
+        _this.requestExpressionStatusAction = _d2UiCore.Action.create('requestExpressionStatus');
         return _this;
     }
 
-    _createClass(ExpressionManager, [{
+    (0, _createClass3.default)(ExpressionManager, [{
         key: 'getChildContext',
         value: function getChildContext() {
             return {
@@ -195,18 +257,18 @@ var ExpressionManager = function (_Component) {
                     });
                 });
             }, function (error) {
-                return log.error(error);
+                return _loglevel2.default.error(error);
             });
 
             this.expressionStatusDisposable = this.requestExpressionStatusAction.debounceTime(500).map(function (action) {
                 var formula = action.data;
                 var url = 'expressions/description';
 
-                return Observable.fromPromise(_this2.props.d2.Api.getApi().get(url, { expression: formula }));
+                return _rxjs.Observable.fromPromise(_this2.props.d2.Api.getApi().get(url, { expression: formula }));
             }).concatAll().subscribe(function (response) {
                 return _this2.props.expressionStatusStore.setState(response);
             }, function (error) {
-                return log.error(error);
+                return _loglevel2.default.error(error);
             });
 
             if (this.props.formulaValue.trim()) {
@@ -228,95 +290,95 @@ var ExpressionManager = function (_Component) {
                 return _this3.state.description && _this3.state.description.trim();
             };
 
-            return React.createElement(
-                Column,
+            return _react2.default.createElement(
+                _d2UiCore.Column,
                 null,
-                React.createElement(Heading, { level: 3, text: this.props.titleText }),
-                React.createElement(
-                    Row,
+                _react2.default.createElement(_d2UiCore.Heading, { level: 3, text: this.props.titleText }),
+                _react2.default.createElement(
+                    _d2UiCore.Row,
                     null,
-                    React.createElement(
-                        Paper,
+                    _react2.default.createElement(
+                        _Paper2.default,
                         { style: styles.expressionFormulaWrap },
-                        React.createElement(
-                            Column,
+                        _react2.default.createElement(
+                            _d2UiCore.Column,
                             null,
-                            React.createElement(ExpressionDescription, {
+                            _react2.default.createElement(_ExpressionDescription2.default, {
                                 descriptionValue: this.state.description,
                                 descriptionLabel: this.i18n.getTranslation('description'),
                                 onDescriptionChange: this.descriptionChange,
                                 errorText: !isDescriptionValid() ? this.i18n.getTranslation('field_is_required') : undefined,
                                 onBlur: this.requestExpressionStatus
                             }),
-                            React.createElement(ExpressionFormula, {
+                            _react2.default.createElement(_ExpressionFormula2.default, {
                                 onFormulaChange: this.formulaChange,
                                 formula: this.state.formula
                             }),
-                            React.createElement(ExpressionOperators, { operatorClicked: this.addOperatorToFormula })
+                            _react2.default.createElement(_ExpressionOperators2.default, { operatorClicked: this.addOperatorToFormula })
                         )
                     ),
-                    React.createElement(
-                        Paper,
+                    _react2.default.createElement(
+                        _Paper2.default,
                         { style: styles.expressionValueOptionsWrap },
-                        React.createElement(
-                            Tabs,
+                        _react2.default.createElement(
+                            _Tabs2.default,
                             { style: styles.expressionContentWrap, tabItemContainerStyle: styles.tabItemContainer },
-                            React.createElement(
-                                Tab,
+                            _react2.default.createElement(
+                                _Tab2.default,
                                 { style: styles.tabs, label: this.i18n.getTranslation('data_elements') },
-                                React.createElement(DataElementOperandSelector, {
+                                _react2.default.createElement(_DataElementOperandSelector2.default, {
                                     listStyle: styles.list,
                                     onSelect: this.dataElementOperandSelected
                                 })
                             ),
-                            React.createElement(
-                                Tab,
+                            _react2.default.createElement(
+                                _Tab2.default,
                                 { style: styles.tabs, label: this.i18n.getTranslation('programs') },
-                                React.createElement(ProgramOperandSelector, {
+                                _react2.default.createElement(_ProgramOperandSelector2.default, {
                                     onSelect: this.programOperandSelected
                                 })
                             ),
-                            React.createElement(
-                                Tab,
+                            _react2.default.createElement(
+                                _Tab2.default,
                                 { style: styles.tabs, label: this.i18n.getTranslation('organisation_unit_counts') },
-                                React.createElement(OrganisationUnitGroupSelector, {
+                                _react2.default.createElement(_OrganisationUnitGroupSelector2.default, {
                                     listStyle: styles.list,
                                     onSelect: this.appendToFormula
                                 })
                             ),
-                            React.createElement(
-                                Tab,
+                            _react2.default.createElement(
+                                _Tab2.default,
                                 { style: styles.tabs, label: this.i18n.getTranslation('constants') },
-                                React.createElement(ConstantSelector, {
+                                _react2.default.createElement(_ConstantSelector2.default, {
                                     listStyle: styles.list,
                                     onSelect: this.appendToFormula
                                 })
                             ),
-                            React.createElement(
-                                Tab,
+                            _react2.default.createElement(
+                                _Tab2.default,
                                 { style: styles.tabs, label: this.i18n.getTranslation('reporting_rates') },
-                                React.createElement(ReportingRatesSelector, {
+                                _react2.default.createElement(_ReportingRatesSelector2.default, {
                                     listStyle: styles.list,
                                     onSelect: this.appendToFormula
                                 })
                             )
                         ),
-                        React.createElement(
+                        _react2.default.createElement(
                             'div',
                             { style: styles.divider },
-                            React.createElement(Divider, null)
+                            _react2.default.createElement(_Divider2.default, null)
                         )
                     )
                 ),
-                React.createElement(
-                    Column,
+                _react2.default.createElement(
+                    _d2UiCore.Column,
                     null,
-                    React.createElement(
-                        Paper,
+                    _react2.default.createElement(
+                        _Paper2.default,
                         { style: styles.expressionDescription },
                         this.state.expressionStatus.description
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'div',
                         { style: this.state.expressionStatus.isValid ? styles.expressionMessage.valid : styles.expressionMessage.invalid
                         },
@@ -326,16 +388,15 @@ var ExpressionManager = function (_Component) {
             );
         }
     }]);
-
     return ExpressionManager;
-}(Component);
+}(_react.Component);
 
 ExpressionManager.propTypes = {
-    expressionStatusStore: PropTypes.object.isRequired,
-    expressionChanged: PropTypes.func.isRequired,
-    descriptionValue: PropTypes.string,
-    formulaValue: PropTypes.string,
-    titleText: PropTypes.string
+    expressionStatusStore: _propTypes2.default.object.isRequired,
+    expressionChanged: _propTypes2.default.func.isRequired,
+    descriptionValue: _propTypes2.default.string,
+    formulaValue: _propTypes2.default.string,
+    titleText: _propTypes2.default.string
 };
 
 ExpressionManager.defaultProps = {
@@ -345,7 +406,7 @@ ExpressionManager.defaultProps = {
 };
 
 ExpressionManager.childContextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
-export default ExpressionManager;
+exports.default = ExpressionManager;

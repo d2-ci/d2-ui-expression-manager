@@ -1,18 +1,50 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+'use strict';
 
-import TextField from 'material-ui/TextField/TextField';
-import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-import { ListSelectAsync } from '@dhis2/d2-ui-core';
-import { Pagination } from '@dhis2/d2-ui-core';
-import { Store } from '@dhis2/d2-ui-core';
-import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _TextField = require('material-ui/TextField/TextField');
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _LinearProgress = require('material-ui/LinearProgress/LinearProgress');
+
+var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
+
+var _d2UiCore = require('@dhis2/d2-ui-core');
+
+var _dataElementOperandSelector = require('./dataElementOperandSelector.actions');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
     list: {
@@ -30,12 +62,12 @@ var styles = {
 };
 
 var DataElementOperandSelector = function (_Component) {
-    _inherits(DataElementOperandSelector, _Component);
+    (0, _inherits3.default)(DataElementOperandSelector, _Component);
 
     function DataElementOperandSelector(props, context) {
-        _classCallCheck(this, DataElementOperandSelector);
+        (0, _classCallCheck3.default)(this, DataElementOperandSelector);
 
-        var _this = _possibleConstructorReturn(this, (DataElementOperandSelector.__proto__ || _Object$getPrototypeOf(DataElementOperandSelector)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (DataElementOperandSelector.__proto__ || (0, _getPrototypeOf2.default)(DataElementOperandSelector)).call(this, props, context));
 
         _this.state = {
             isLoading: true,
@@ -79,12 +111,12 @@ var DataElementOperandSelector = function (_Component) {
         return _this;
     }
 
-    _createClass(DataElementOperandSelector, [{
+    (0, _createClass3.default)(DataElementOperandSelector, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
             var _this2 = this;
 
-            this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
+            this.actionSubscriptions = (0, _dataElementOperandSelector.subscribeDataElementActionsToStore)(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
 
             if (this.props.dataElementOperandSelectorActions) {
                 this.props.dataElementOperandSelectorActions.loadList();
@@ -127,13 +159,13 @@ var DataElementOperandSelector = function (_Component) {
         value: function render() {
             var _this3 = this;
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'data-element-operand-selector' },
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { style: styles.pagination },
-                    React.createElement(Pagination, {
+                    _react2.default.createElement(_d2UiCore.Pagination, {
                         hasNextPage: function hasNextPage() {
                             return _this3.state.pager.hasNextPage();
                         },
@@ -144,13 +176,13 @@ var DataElementOperandSelector = function (_Component) {
                         onPreviousPageClick: this.getPreviousPage
                     })
                 ),
-                React.createElement(TextField, {
+                _react2.default.createElement(_TextField2.default, {
                     style: styles.textField,
                     hintText: this.getTranslation('search_by_name'),
                     onChange: this.searchDataElement
                 }),
-                this.state.isLoading && React.createElement(LinearProgress, { mode: 'indeterminate' }),
-                React.createElement(ListSelectAsync, {
+                this.state.isLoading && _react2.default.createElement(_LinearProgress2.default, { mode: 'indeterminate' }),
+                _react2.default.createElement(_d2UiCore.ListSelectAsync, {
                     size: 12,
                     onItemDoubleClick: this.props.onSelect,
                     source: this.storeObservable,
@@ -159,25 +191,24 @@ var DataElementOperandSelector = function (_Component) {
             );
         }
     }]);
-
     return DataElementOperandSelector;
-}(Component);
+}(_react.Component);
 
 DataElementOperandSelector.propTypes = {
-    dataElementOperandSelectorActions: PropTypes.object,
-    dataElementOperandStore: PropTypes.object,
-    onSelect: PropTypes.func.isRequired,
-    listStyle: PropTypes.object
+    dataElementOperandSelectorActions: _propTypes2.default.object,
+    dataElementOperandStore: _propTypes2.default.object,
+    onSelect: _propTypes2.default.func.isRequired,
+    listStyle: _propTypes2.default.object
 };
 
 DataElementOperandSelector.defaultProps = {
-    dataElementOperandSelectorActions: createDataElementOperandActions(),
-    dataElementOperandStore: Store.create(),
+    dataElementOperandSelectorActions: (0, _dataElementOperandSelector.createDataElementOperandActions)(),
+    dataElementOperandStore: _d2UiCore.Store.create(),
     listStyle: styles.list
 };
 
 DataElementOperandSelector.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
-export default DataElementOperandSelector;
+exports.default = DataElementOperandSelector;
