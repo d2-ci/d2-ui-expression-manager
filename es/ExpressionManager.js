@@ -128,6 +128,13 @@ var ExpressionManager = function (_Component) {
             _this.requestExpressionStatusAction(_this.state.formula);
         };
 
+        _this.validateExpression = function (action) {
+            var formula = action.data;
+            var url = 'expressions/description';
+
+            return Observable.fromPromise(_this.props.d2.Api.getApi().get(url, { expression: formula }));
+        };
+
         _this.state = {
             formula: _this.props.formulaValue,
             description: _this.props.descriptionValue,
@@ -198,12 +205,7 @@ var ExpressionManager = function (_Component) {
                 return log.error(error);
             });
 
-            this.expressionStatusDisposable = this.requestExpressionStatusAction.debounceTime(500).map(function (action) {
-                var formula = action.data;
-                var url = 'expressions/description';
-
-                return Observable.fromPromise(_this2.props.d2.Api.getApi().get(url, { expression: formula }));
-            }).concatAll().subscribe(function (response) {
+            this.expressionStatusDisposable = this.requestExpressionStatusAction.debounceTime(500).map(this.props.validateExpression || this.validateExpression).concatAll().subscribe(function (response) {
                 return _this2.props.expressionStatusStore.setState(response);
             }, function (error) {
                 return log.error(error);
@@ -335,7 +337,8 @@ ExpressionManager.propTypes = {
     expressionChanged: PropTypes.func.isRequired,
     descriptionValue: PropTypes.string,
     formulaValue: PropTypes.string,
-    titleText: PropTypes.string
+    titleText: PropTypes.string,
+    validateExpression: PropTypes.func
 };
 
 ExpressionManager.defaultProps = {
